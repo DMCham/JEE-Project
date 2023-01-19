@@ -64,6 +64,10 @@ public class Member implements Serializable {
     @Column(name = "user_name")
     private String userName;
 
+    @NotNull
+    @Size(min = 8, max = 25)
+    private String passwordField;
+
     public Long getId() {
         return id;
     }
@@ -95,11 +99,20 @@ public class Member implements Serializable {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
     public String getuserName() {
         return userName;
     }
 
     public void setuserName(String userName) {
         this.userName = userName;
+    }
+
+    public String getpasswordField() {
+        return passwordField;
+    }
+
+    public void setpasswordField(String passwordField) {
+        this.passwordField = passwordField;
     }
 }

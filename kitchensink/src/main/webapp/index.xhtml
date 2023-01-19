@@ -49,6 +49,10 @@
                 <h:outputLabel for="userName" value="User Name:" />
                 <h:inputText id="userName" value="#{newMember.userName}" />
                 <h:message for="userName" errorClass="invalid" />
+                
+                <h:outputLabel for="passwordField" value="Password:" />
+                <h:inputText id="passwordField" value="#{newMember.passwordField}" />
+                <h:message for="passwordField" errorClass="invalid" />
             </h:panelGrid>
 
             <p>
@@ -88,6 +92,10 @@
             <h:column>
                 <f:facet name="header">User Name</f:facet>
                 #{_member.userName}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Password</f:facet>
+                #{_member.passwordField}
             </h:column>
             <h:column>
                 <f:facet name="header">REST URL</f:facet>

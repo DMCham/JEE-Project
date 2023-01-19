@@ -59,6 +59,11 @@ public class Member implements Serializable {
     @Column(name = "phone_number")
     private String phoneNumber;
 
+    @NotNull
+    @Size(min = 4, max = 25)
+    @Column(name = "user_name")
+    private String userName;
+
     public Long getId() {
         return id;
     }
@@ -89,5 +94,12 @@ public class Member implements Serializable {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+    public String getuserName() {
+        return userName;
+    }
+
+    public void setuserName(String userName) {
+        this.userName = userName;
     }
 }

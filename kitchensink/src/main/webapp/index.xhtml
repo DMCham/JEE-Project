@@ -32,27 +32,29 @@
             <h2>Member Registration</h2>
             <p>Enforces annotation-based constraints defined on the
                 model class.</p>
-            <h:panelGrid columns="3" columnClasses="titleCell">
-                <h:outputLabel for="name" value="Name:" />
-                <h:inputText id="name" value="#{newMember.name}" />
-                <h:message for="name" errorClass="invalid" />
+			<h:panelGrid columns="3" columnClasses="titleCell">
+				<h:outputLabel for="name" value="Name:" />
+				<h:inputText id="name" value="#{newMember.name}" />
+				<h:message for="name" errorClass="invalid" />
 
-                <h:outputLabel for="email" value="Email:" />
-                <h:inputText id="email" value="#{newMember.email}" />
-                <h:message for="email" errorClass="invalid" />
+				<h:outputLabel for="email" value="Email:" />
+				<h:inputText id="email" value="#{newMember.email}" />
+				<h:message for="email" errorClass="invalid" />
 
-                <h:outputLabel for="phoneNumber" value="Phone #:" />
-                <h:inputText id="phoneNumber"
-                    value="#{newMember.phoneNumber}" />
-                <h:message for="phoneNumber" errorClass="invalid" />
+				<h:outputLabel for="phoneNumber" value="Phone #:" />
+				<h:inputText id="phoneNumber" value="#{newMember.phoneNumber}" />
+				<h:message for="phoneNumber" errorClass="invalid" />
 
-				<!-- 2023/01/20 : Added user name field -->
-                <h:outputLabel for="userName" value="User Name:" />
-                <h:inputText id="userName" value="#{newMember.userName}" />
-                <h:message for="userName" errorClass="invalid" />
-            </h:panelGrid>
+				<h:outputLabel for="userName" value="User Name:" /> 
+				<h:inputText id="userName" value="#{newMember.userName}" />
+				<h:message for="userName" errorClass="invalid" />
 
-            <p>
+				<h:outputLabel for="passwordField" value="Password:" />
+				<h:inputSecret id="passwordField" value="#{newMember.passwordField}" />
+				<h:message for="passwordField" errorClass="invalid" />
+			</h:panelGrid>
+
+			<p>
                 <h:panelGrid columns="2">
                     <h:commandButton id="register"
                         action="#{memberController.register}"
@@ -91,7 +93,12 @@
                 <f:facet name="header">User Name</f:facet>
                 #{_member.userName}
             </h:column>
-            <h:column>
+			<!-- 2023/01/20 : Added password in table -->
+			<h:column>
+				<f:facet name="header">Password</f:facet>
+                #{_member.passwordField}
+            </h:column>
+			<h:column>
                 <f:facet name="header">REST URL</f:facet>
                 <a
                     href="#{request.contextPath}/rest/members/#{_member.id}">/rest/members/#{_member.id}</a>

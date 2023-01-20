@@ -64,6 +64,10 @@ public class Member implements Serializable {
     @Column(name = "user_name")
     private String userName;
 
+    @NotNull // 2023/01/20 : Add user name field
+    @Pattern(regexp="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$", message="Must include at least one digit, lowercase, uppercase, special character, and at least 8 characters.")
+    private String passwordField;
+
     public Long getId() {
         return id;
     }
@@ -102,5 +106,13 @@ public class Member implements Serializable {
 
     public void setuserName(String userName) {
         this.userName = userName;
+    }
+
+    public String getpasswordField() {
+        return passwordField;
+    }
+
+    public void setpasswordField(String passwordField) {
+        this.passwordField = passwordField;
     }
 }

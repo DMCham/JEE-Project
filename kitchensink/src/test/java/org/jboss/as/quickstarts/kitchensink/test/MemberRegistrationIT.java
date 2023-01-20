@@ -59,6 +59,7 @@ public class MemberRegistrationIT {
         newMember.setEmail("jane@mailinator.com");
         newMember.setPhoneNumber("2125551234");
         newMember.setuserName("JDoe1"); // 2023/01/20 : Added user name field test
+        newMember.setpasswordField("P@ssw0rd"); // 2023/01/20 : Added password field test
         memberRegistration.register(newMember);
         assertNotNull(newMember.getId());
         log.info(newMember.getName() + " was persisted with id " + newMember.getId());

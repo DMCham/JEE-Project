@@ -17,4 +17,5 @@
 
 -- You can use this file to load seed data into the database using SQL statements
 -- 2023/01/20 : Added user name field
-insert into Member (id, name, email, phone_number, user_name) values (0, 'John Smith', 'john.smith@mailinator.com', '2125551212', 'JSmith1') 
+-- 2023/01/20 : Added password field
+insert into Member (id, name, email, phone_number, user_name,passwordField) values (0, 'John Smith', 'john.smith@mailinator.com', '2125551212', 'JSmith1', 'P@ssw0rd') 

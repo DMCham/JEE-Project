@@ -65,6 +65,31 @@
                 </h:panelGrid>
             </p>
         </h:form>
+        <h:form id="login">
+            <h2>Member Login</h2>
+            <p>Enforces annotation-based constraints defined on the
+                model class.</p>
+			<h:panelGrid columns="3" columnClasses="titleCell">
+				<h:outputLabel for="userName" value="User Name:" /> 
+				<h:inputText id="userName" value="#{newMember.userName}" />
+				<h:message for="userName" errorClass="invalid" />
+
+				<h:outputLabel for="passwordField" value="Password:" />
+				<h:inputSecret id="passwordField" value="#{newMember.passwordField}" />
+				<h:message for="passwordField" errorClass="invalid" />
+			</h:panelGrid>
+
+			<p>
+                <h:panelGrid columns="2">
+                    <h:commandButton id="loginButton"
+                        action="#{memberController.register}"
+                        value="Login" styleClass="loginButton" />
+                    <h:messages styleClass="messages"
+                        errorClass="invalid" infoClass="valid"
+                        warnClass="warning" globalOnly="true" />
+                </h:panelGrid>
+            </p>
+        </h:form>
         <h2>Members</h2>
         <h:panelGroup rendered="#{empty members}">
             <em>No registered members.</em>

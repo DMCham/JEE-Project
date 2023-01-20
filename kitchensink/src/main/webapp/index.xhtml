@@ -45,6 +45,11 @@
                 <h:inputText id="phoneNumber"
                     value="#{newMember.phoneNumber}" />
                 <h:message for="phoneNumber" errorClass="invalid" />
+
+				<!-- 2023/01/20 : Added user name field -->
+                <h:outputLabel for="userName" value="User Name:" />
+                <h:inputText id="userName" value="#{newMember.userName}" />
+                <h:message for="userName" errorClass="invalid" />
             </h:panelGrid>
 
             <p>
@@ -80,6 +85,11 @@
             <h:column>
                 <f:facet name="header">Phone #</f:facet>
                 #{_member.phoneNumber}
+            </h:column>
+            <!-- 2023/01/20 : Added user name in table -->
+            <h:column>
+                <f:facet name="header">User Name</f:facet>
+                #{_member.userName}
             </h:column>
             <h:column>
                 <f:facet name="header">REST URL</f:facet>

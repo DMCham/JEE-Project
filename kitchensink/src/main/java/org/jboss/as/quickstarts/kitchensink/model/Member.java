@@ -54,10 +54,15 @@ public class Member implements Serializable {
     private String email;
 
     @NotNull
-    @Size(min = 8, max = 12) // Changed phone number minimum to 8
+    @Size(min = 8, max = 12) // 2023/01/20 : Changed phone number minimum to 8
     @Digits(fraction = 0, integer = 12)
     @Column(name = "phone_number")
     private String phoneNumber;
+
+    @NotNull // 2023/01/20 : Add user name field
+    @Size(min = 4, max = 25)
+    @Column(name = "user_name")
+    private String userName;
 
     public Long getId() {
         return id;
@@ -89,5 +94,13 @@ public class Member implements Serializable {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getuserName() {
+        return userName;
+    }
+
+    public void setuserName(String userName) {
+        this.userName = userName;
     }
 }

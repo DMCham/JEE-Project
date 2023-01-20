@@ -1,4 +1,5 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
 <!--
     JBoss, Home of Professional Open Source
     Copyright 2015, Red Hat, Inc. and/or its affiliates, and individual
@@ -16,8 +17,8 @@
     limitations under the License.
 -->
 <!-- This file is not required if you don't need any extra configuration. -->
-<faces-config xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<faces-config xmlns="https://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
               xsi:schemaLocation="
                   https://jakarta.ee/xml/ns/jakartaee
                   https://jakarta.ee/xml/ns/jakartaee/web-facesconfig_4_0.xsd"

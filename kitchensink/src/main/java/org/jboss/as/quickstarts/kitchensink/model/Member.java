@@ -65,7 +65,7 @@ public class Member implements Serializable {
     private String userName;
 
     @NotNull
-    @Size(min = 8, max = 25)
+    @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$", message = "Must include at least one digit, lowercase, uppercase, special character, and at least 8 characters.")
     private String passwordField;
 
     public Long getId() {

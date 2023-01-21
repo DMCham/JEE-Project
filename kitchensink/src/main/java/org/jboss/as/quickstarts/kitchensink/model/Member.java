@@ -54,17 +54,17 @@ public class Member implements Serializable {
     private String email;
 
     @NotNull
-    @Size(min = 8, max = 12) // 2023/01/20 : Changed phone number minimum to 8
+    @Size(min = 8, max = 12) // Changed phone number minimum to 8
     @Digits(fraction = 0, integer = 12)
     @Column(name = "phone_number")
     private String phoneNumber;
 
-    @NotNull // 2023/01/20 : Add user name field
+    @NotNull // Add user name field
     @Size(min = 4, max = 25)
     @Column(name = "user_name")
     private String userName;
 
-    @NotNull // 2023/01/20 : Add user name field
+    @NotNull // Add user name field
     @Pattern(regexp="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$", message="Must include at least one digit, lowercase, uppercase, special character, and at least 8 characters.")
     private String passwordField;
 
@@ -100,19 +100,19 @@ public class Member implements Serializable {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getuserName() {
+    public String getuserName() { // username getter
         return userName;
     }
 
-    public void setuserName(String userName) {
+    public void setuserName(String userName) { // username setter
         this.userName = userName;
     }
 
-    public String getpasswordField() {
+    public String getpasswordField() { // passwordField getter
         return passwordField;
     }
 
-    public void setpasswordField(String passwordField) {
+    public void setpasswordField(String passwordField) { // passwordField setter
         this.passwordField = passwordField;
     }
 }

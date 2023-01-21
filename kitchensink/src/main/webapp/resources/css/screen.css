@@ -119,7 +119,7 @@ label {
 input {
   margin-bottom: 8px;
 }
-.register, .loginButton{
+.register, .loginButton{ /* added css for login button */
   float: left;
   margin-left: 85px;
 }

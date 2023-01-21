@@ -43,7 +43,7 @@ public class MemberController {
     private MemberRegistration memberRegistration;
 
     @Inject
-    private MemberRepository repository;
+    private MemberRepository repository; // add this line to use repository in membercontroller.java
 
     @Produces
     @Named
@@ -67,26 +67,26 @@ public class MemberController {
         }
     }
 
-    public void userlogin(String userName) throws Exception {
-        Member member = null;
+    public void userlogin(String userName) throws Exception { // Added userlogin function for Login button
+        Member member = null; // Obtained from emailAlreadyExist function to get member for if condition later
 
         try {
-            member = repository.findByuserName(userName);
+            member = repository.findByuserName(userName); // Use function findByuserName to get the member from repository
 
-            if (newMember.getpasswordField().equals(member.getpasswordField())) {
-                ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-                ec.redirect(ec.getRequestContextPath() + "/rest/members");
+            if (newMember.getpasswordField().equals(member.getpasswordField())) { // if passwordfield is equal to repository password
+                ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext(); // Get current url for next line
+                ec.redirect(ec.getRequestContextPath() + "/rest/members"); // After successful login, go to /rest/members page for JSON response
             }
-            else {
-                FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login Unsuccessful : Wrong Password", "Login Unsuccessful : Wrong Password");
-                FacesContext context = FacesContext.getCurrentInstance();
-                context.addMessage("login:loginButton", m);
+            else { // if password check fails
+                FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login Unsuccessful : Wrong Password", "Login Unsuccessful : Wrong Password"); // wrong password
+                FacesContext context = FacesContext.getCurrentInstance(); // get context for next line
+                context.addMessage("login:loginButton", m); // show message from variable m above
             }
         } catch (Exception e) {
             String errorMessage = getRootErrorMessage(e);
-            FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login Unsuccessful : No Matching User Name and Password", "Login Unsuccessful : No Matching User Name and Password");
-            FacesContext context = FacesContext.getCurrentInstance();
-            context.addMessage("login:loginButton", m);
+            FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login Unsuccessful : No Matching User Name and Password", "Login Unsuccessful : No Matching User Name and Password"); // no username
+            FacesContext context = FacesContext.getCurrentInstance(); // get context for next line
+            context.addMessage("login:loginButton", m); // show message from variable m above
         }
     }
     private String getRootErrorMessage(Exception e) {

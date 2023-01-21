@@ -84,9 +84,9 @@
 					<h:commandButton id="loginButton"
 					action="#{memberController.userlogin(newMember.userName)}" value="Login"
 						styleClass="loginButton" />
-					<h:messages styleClass="messages"
-                        errorClass="invalid" infoClass="valid"
-                        warnClass="warning" globalOnly="true" />
+					<h:message for="loginButton" styleClass="messages" 
+					    errorClass="invalid" infoClass="valid"
+                        warnClass="warning" />
                 </h:panelGrid>
             </p>
         </h:form>

@@ -24,7 +24,6 @@ import jakarta.faces.context.ExternalContext;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
-import jakarta.persistence.NoResultException;
 
 import org.jboss.as.quickstarts.kitchensink.data.MemberRepository;
 import org.jboss.as.quickstarts.kitchensink.model.Member;
@@ -73,15 +72,21 @@ public class MemberController {
 
         try {
             member = repository.findByuserName(userName);
-            
+
             if (newMember.getpasswordField().equals(member.getpasswordField())) {
                 ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
                 ec.redirect(ec.getRequestContextPath() + "/rest/members");
             }
+            else {
+                FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login Unsuccessful : Wrong Password", "Login Unsuccessful : Wrong Password");
+                FacesContext context = FacesContext.getCurrentInstance();
+                context.addMessage("login:loginButton", m);
+            }
         } catch (Exception e) {
-        	String errorMessage = getRootErrorMessage(e);
-            FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login unsuccessful : " + errorMessage, "Login unsuccessful");
-            facesContext.addMessage(null, m);
+            String errorMessage = getRootErrorMessage(e);
+            FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login Unsuccessful : " + errorMessage, "Login Unsuccessful");
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage("login:loginButton", m);
         }
     }
     private String getRootErrorMessage(Exception e) {

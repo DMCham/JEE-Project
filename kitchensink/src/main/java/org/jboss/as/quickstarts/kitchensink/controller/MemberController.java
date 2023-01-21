@@ -20,10 +20,12 @@ import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.inject.Model;
 import jakarta.enterprise.inject.Produces;
 import jakarta.faces.application.FacesMessage;
+import jakarta.faces.context.ExternalContext;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 
+import org.jboss.as.quickstarts.kitchensink.data.MemberRepository;
 import org.jboss.as.quickstarts.kitchensink.model.Member;
 import org.jboss.as.quickstarts.kitchensink.service.MemberRegistration;
 
@@ -39,6 +41,9 @@ public class MemberController {
 
     @Inject
     private MemberRegistration memberRegistration;
+
+    @Inject
+    private MemberRepository repository;
 
     @Produces
     @Named
@@ -58,6 +63,19 @@ public class MemberController {
         } catch (Exception e) {
             String errorMessage = getRootErrorMessage(e);
             FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR, errorMessage, "Registration unsuccessful");
+            facesContext.addMessage(null, m);
+        }
+    }
+
+    public void userlogin() throws Exception {
+        try {
+            FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_INFO, "Login!", "Registration successful");
+            facesContext.addMessage(null, m);
+            ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+            ec.redirect(ec.getRequestContextPath() + "/rest/members");
+        } catch (Exception e) {
+            String errorMessage = getRootErrorMessage(e);
+            FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR, errorMessage, "Login unsuccessful");
             facesContext.addMessage(null, m);
         }
     }

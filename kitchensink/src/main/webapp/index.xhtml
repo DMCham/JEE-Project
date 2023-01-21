@@ -81,10 +81,10 @@
 
 			<p>
                 <h:panelGrid columns="2">
-                    <h:commandButton id="loginButton"
-                        action="#{memberController.register}"
-                        value="Login" styleClass="loginButton" />
-                    <h:messages styleClass="messages"
+					<h:commandButton id="loginButton"
+					action="#{memberController.userlogin}" value="Login"
+						styleClass="loginButton" />
+					<h:messages styleClass="messages"
                         errorClass="invalid" infoClass="valid"
                         warnClass="warning" globalOnly="true" />
                 </h:panelGrid>

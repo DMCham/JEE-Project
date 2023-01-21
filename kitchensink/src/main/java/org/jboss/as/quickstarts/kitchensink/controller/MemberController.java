@@ -78,21 +78,11 @@ public class MemberController {
                 ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
                 ec.redirect(ec.getRequestContextPath() + "/rest/members");
             }
-        } catch (NoResultException e) {
-            // ignore
-        }
-
-        /*
-        try {
-            FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_INFO, "Login!", "Registration successful");
-            facesContext.addMessage(null, m);
-            ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-            ec.redirect(ec.getRequestContextPath() + "/rest/members");
         } catch (Exception e) {
-            String errorMessage = getRootErrorMessage(e);
-            FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR, errorMessage, "Login unsuccessful");
+        	String errorMessage = getRootErrorMessage(e);
+            FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login unsuccessful : " + errorMessage, "Login unsuccessful");
             facesContext.addMessage(null, m);
-        }*/
+        }
     }
     private String getRootErrorMessage(Exception e) {
         // Default to general error message that registration failed.

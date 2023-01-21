@@ -84,7 +84,7 @@ public class MemberController {
             }
         } catch (Exception e) {
             String errorMessage = getRootErrorMessage(e);
-            FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login Unsuccessful : " + errorMessage, "Login Unsuccessful");
+            FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login Unsuccessful : No Matching User Name and Password", "Login Unsuccessful : No Matching User Name and Password");
             FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage("login:loginButton", m);
         }

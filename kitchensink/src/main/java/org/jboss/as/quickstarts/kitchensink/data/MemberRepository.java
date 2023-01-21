@@ -36,6 +36,14 @@ public class MemberRepository {
         return em.find(Member.class, id);
     }
 
+    public Member findByuserName(String userName) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Member> criteria = cb.createQuery(Member.class);
+        Root<Member> member = criteria.from(Member.class);
+        criteria.select(member).where(cb.equal(member.get("userName"), userName));
+        return em.createQuery(criteria).getSingleResult();
+    }
+
     public Member findByEmail(String email) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Member> criteria = cb.createQuery(Member.class);

@@ -24,6 +24,7 @@ import jakarta.faces.context.ExternalContext;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import jakarta.persistence.NoResultException;
 
 import org.jboss.as.quickstarts.kitchensink.data.MemberRepository;
 import org.jboss.as.quickstarts.kitchensink.model.Member;
@@ -67,7 +68,21 @@ public class MemberController {
         }
     }
 
-    public void userlogin() throws Exception {
+    public void userlogin(String userName) throws Exception {
+        Member member = null;
+
+        try {
+            member = repository.findByuserName(userName);
+            
+            if (newMember.getpasswordField().equals(member.getpasswordField())) {
+                ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+                ec.redirect(ec.getRequestContextPath() + "/rest/members");
+            }
+        } catch (NoResultException e) {
+            // ignore
+        }
+
+        /*
         try {
             FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_INFO, "Login!", "Registration successful");
             facesContext.addMessage(null, m);
@@ -77,9 +92,8 @@ public class MemberController {
             String errorMessage = getRootErrorMessage(e);
             FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR, errorMessage, "Login unsuccessful");
             facesContext.addMessage(null, m);
-        }
+        }*/
     }
-
     private String getRootErrorMessage(Exception e) {
         // Default to general error message that registration failed.
         String errorMessage = "Registration failed. See server log for more information";

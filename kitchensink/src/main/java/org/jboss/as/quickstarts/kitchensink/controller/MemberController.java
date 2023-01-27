@@ -73,7 +73,7 @@ public class MemberController {
         try {
             member = repository.findByuserName(userName); // Use function findByuserName to get the member from repository
 
-            if (newMember.getpasswordField().equals(member.getpasswordField())) { // if passwordfield is equal to repository password
+            if (newMember.getlogin_passwordField().equals(member.getpasswordField())) { // if login_passwordfield is equal to repository password
                 ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext(); // Get current url for next line
                 ec.redirect(ec.getRequestContextPath() + "/rest/members"); // After successful login, go to /rest/members page for JSON response
             }
@@ -83,7 +83,6 @@ public class MemberController {
                 context.addMessage("login:loginButton", m); // show message from variable m above
             }
         } catch (Exception e) {
-            String errorMessage = getRootErrorMessage(e);
             FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login Unsuccessful : No Matching User Name and Password", "Login Unsuccessful : No Matching User Name and Password"); // no username
             FacesContext context = FacesContext.getCurrentInstance(); // get context for next line
             context.addMessage("login:loginButton", m); // show message from variable m above

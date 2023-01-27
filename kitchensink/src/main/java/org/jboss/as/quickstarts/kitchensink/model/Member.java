@@ -64,9 +64,15 @@ public class Member implements Serializable {
     @Column(name = "user_name")
     private String userName;
 
-    @NotNull // Add user name field
+    @NotNull // Add password field
     @Pattern(regexp="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$", message="Must include at least one digit, lowercase, uppercase, special character, and at least 8 characters.")
     private String passwordField;
+
+    @Column(name = "login_user_name") // Add login user name field
+    private String login_userName;
+
+    @Column(name = "login_passwordField") // Add login password field
+    private String login_passwordField;
 
     public Long getId() {
         return id;
@@ -114,5 +120,21 @@ public class Member implements Serializable {
 
     public void setpasswordField(String passwordField) { // passwordField setter
         this.passwordField = passwordField;
+    }
+
+    public String getlogin_userName() { // login_userName getter
+        return login_userName;
+    }
+
+    public void setlogin_userName(String login_userName) { // login_userName setter
+        this.login_userName = login_userName;
+    }
+
+    public String getlogin_passwordField() { // login_passwordField getter
+        return login_passwordField;
+    }
+
+    public void setlogin_passwordField(String login_passwordField) { // login_passwordField setter
+        this.login_passwordField = login_passwordField;
     }
 }

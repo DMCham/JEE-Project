@@ -70,19 +70,19 @@
             <p>Enforces annotation-based constraints defined on the
                 model class.</p>
 			<h:panelGrid columns="3" columnClasses="titleCell">
-				<h:outputLabel for="userName" value="User Name:" /> 
-				<h:inputText id="userName" value="#{newMember.userName}" />
-				<h:message for="userName" errorClass="invalid" />
+				<h:outputLabel for="login_userName" value="User Name:" /> 
+				<h:inputText id="login_userName" value="#{newMember.login_userName}" />
+				<h:message for="login_userName" errorClass="invalid" />
 
-				<h:outputLabel for="passwordField" value="Password:" />
-				<h:inputSecret id="passwordField" value="#{newMember.passwordField}" />
-				<h:message for="passwordField" errorClass="invalid" />
+				<h:outputLabel for="login_passwordField" value="Password:" />
+				<h:inputSecret id="login_passwordField" value="#{newMember.login_passwordField}" />
+				<h:message for="login_passwordField" errorClass="invalid" />
 			</h:panelGrid>
 
 			<p>
                 <h:panelGrid columns="2">
 					<h:commandButton id="loginButton"
-					action="#{memberController.userlogin(newMember.userName)}" value="Login"
+					action="#{memberController.userlogin(newMember.login_userName)}" value="Login"
 						styleClass="loginButton" />
 					<h:message for="loginButton" styleClass="messages" 
 					    errorClass="invalid" infoClass="valid"

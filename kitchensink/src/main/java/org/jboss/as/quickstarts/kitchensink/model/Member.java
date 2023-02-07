@@ -44,23 +44,23 @@ public class Member implements Serializable {
     private Long id;
 
     @NotNull
-    @Size(min = 1, max = 25)
+    @Size(min = 1, max = 25, message = "Please enter valid name")
     @Pattern(regexp = "[^0-9]*", message = "Must not contain numbers")
     private String name;
 
     @NotNull
-    @NotEmpty
-    @Email
+    @NotEmpty (message = "Please enter valid email address")
+    @Email (message = "Please enter valid email address")
     private String email;
 
     @NotNull
-    @Digits(fraction = 0, integer = 12)
-    @Size(min = 8, max = 12) // Changed phone number minimum to 8
+    @Digits(fraction = 0, integer = 12, message = "Must only contain numbers (Max : 12)")
+    @Size(min = 8, max = 12, message = "Length must be between 8 to 12") // Changed phone number minimum to 8
     @Column(name = "phone_number")
     private String phoneNumber;
 
     @NotNull // Add user name field
-    @Size(min = 4, max = 25)
+    @Size(min = 4, max = 25, message = "Please enter valid user name")
     @Column(name = "user_name")
     private String userName;
 

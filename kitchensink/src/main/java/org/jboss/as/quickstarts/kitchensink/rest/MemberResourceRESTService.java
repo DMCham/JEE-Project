@@ -16,6 +16,7 @@
  */
 package org.jboss.as.quickstarts.kitchensink.rest;
 
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -32,6 +33,7 @@ import jakarta.validation.ValidationException;
 import jakarta.validation.Validator;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
+import jakarta.ws.rs.HeaderParam;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
@@ -74,12 +76,18 @@ public class MemberResourceRESTService {
     @GET
     @Path("/{id:[0-9][0-9]*}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Member lookupMemberById(@PathParam("id") long id) {
+    public Member lookupMemberById(@PathParam("id") long id, @HeaderParam("Authorization") String Authorization) {
         Member member = repository.findById(id);
         if (member == null) {
             throw new WebApplicationException(Response.Status.NOT_FOUND);
         }
-        return member;
+        String checkidpass = member.getuserName() + ":" + member.getpasswordField();
+        String encoded = "Basic " + Base64.getEncoder().encodeToString(checkidpass.getBytes());
+
+        if (encoded.equals(Authorization)) {
+           return member;
+        }
+        return null;
     }
 
     /**
